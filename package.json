@@ -12,14 +12,19 @@
     "@apollo/client": "^3.5.9",
     "apollo-server-micro": "^3.6.3",
     "firebase": "^9.6.7",
+    "firebase-admin": "^10.0.2",
     "graphql": "^16.3.0",
     "next": "12.1.0",
+    "next-firebase-auth-cookies": "^3.0.5",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.27.1",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@types/node": "17.0.18",
     "@types/react": "17.0.39",
+    "@types/uniqid": "^5.3.2",
     "autoprefixer": "^10.4.2",
     "eslint": "8.9.0",
     "eslint-config-next": "12.1.0",
