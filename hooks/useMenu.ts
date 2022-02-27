@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_TASKS, GET_TASK_COMPLETE, GET_TASK_REMOVE } from 'graphql/query';
+import { useRef, useState, useEffect } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import { GET_TASKS, GET_TASK_REMOVE } from 'graphql/query';
 import { Task } from 'graphql/resolvers';
 
 type Query = {
@@ -9,11 +9,20 @@ type Query = {
   getTasksComplete?: Task[];
 };
 
-export const useMenu = ({ uid }: { uid: string }) => {
+export const useMenu = ({ uid }: { uid: string | undefined }) => {
   const [query, setQuery] = useState({ query: GET_TASKS, state: 'All Tasks' });
-  const { data, loading } = useQuery<Query>(query.query, {
+  /*   const { data, loading } = useQuery<Query>(query.query, {
+    variables: { uid },
+  }); */
+  const [getQuery, { data, loading }] = useLazyQuery<Query>(query.query, {
     variables: { uid },
   });
+
+  useEffect(() => {
+    uid && getQuery();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uid]);
 
   const { current } = useRef<[string, () => void][]>([
     [
@@ -26,12 +35,6 @@ export const useMenu = ({ uid }: { uid: string }) => {
       'Tasks Deleted',
       () => {
         setQuery({ query: GET_TASK_REMOVE, state: 'Tasks Deleted' });
-      },
-    ],
-    [
-      'Tasks Completed',
-      () => {
-        setQuery({ query: GET_TASK_COMPLETE, state: 'Tasks Completed' });
       },
     ],
   ]);

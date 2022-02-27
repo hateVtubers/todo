@@ -4,7 +4,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { auth } from 'db/client';
-import { signIn, signOut } from 'next-firebase-auth-cookies';
+import { signIn, signOut } from 'next-firebase-auth-cookies/auth';
 
 export const signInWith = async (provider: 'google' | 'github') => {
   const user = await signInWithPopup(

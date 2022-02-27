@@ -1,5 +1,5 @@
 import { initializeApp, cert, getApps, getApp } from 'firebase-admin/app';
-import credencial from 'db/credencial.json';
+import { credencial } from 'db/credencial';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 

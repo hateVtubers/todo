@@ -2,13 +2,13 @@ import { getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyD1R5-BQPfaOeUNGcuIgSqdTX292aGBJ8M',
-  authDomain: 'todo-graphql-ts.firebaseapp.com',
-  databaseURL: 'https://todo-graphql-ts-default-rtdb.firebaseio.com',
-  projectId: 'todo-graphql-ts',
-  storageBucket: 'todo-graphql-ts.appspot.com',
-  messagingSenderId: '57795813386',
-  appId: '1:57795813386:web:0ab3f2e98708d822e73ff3',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 export const app = getApps().length

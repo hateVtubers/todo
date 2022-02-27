@@ -2,8 +2,8 @@ export const MiniCard = ({
   uid,
   id,
 }: {
-  uid: string | null;
-  id: string | undefined | null;
+  uid: string | undefined;
+  id: string | undefined;
 }) => {
   return (
     <aside className='bg-downriver-400 mt-3 w-full rounded py-1 px-3 text-sm'>

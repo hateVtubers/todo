@@ -5,7 +5,6 @@ export const GET_TASKS = gql`
     getTasks(uid: $uid) {
       title
       description
-      done
       id
     }
   }
@@ -16,18 +15,6 @@ export const GET_TASK_REMOVE = gql`
     getTasksRemoves(uid: $uid) {
       title
       description
-      done
-      id
-    }
-  }
-`;
-
-export const GET_TASK_COMPLETE = gql`
-  query ($uid: ID!) {
-    getTasksComplete(uid: $uid) {
-      title
-      description
-      done
       id
     }
   }

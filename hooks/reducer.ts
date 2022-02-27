@@ -1,5 +1,6 @@
-import { UPDATE_TASK } from 'graphql/mutations';
+import { UPDATE_TASK, DELETE_TASK } from 'graphql/mutations';
 import { Task } from 'graphql/resolvers';
+import { DocumentNode } from 'graphql';
 
 type InitialState = {
   title: string;
@@ -7,19 +8,15 @@ type InitialState = {
     title: string;
     description: string;
   };
-  mutation: typeof UPDATE_TASK;
+  mutation: DocumentNode;
 };
 
 type Action = {
   type: 'editing' | 'reset';
-  payload: Task | InitialState;
+  payload?: Task | InitialState | DocumentNode;
 };
 
-export const init = (initialState: InitialState) => {
-  return {
-    ...initialState,
-  };
-};
+export const init = (initialState: InitialState) => ({ ...initialState });
 
 export const reducer = (state: InitialState, { type, payload }: Action) => {
   switch (type) {
@@ -28,7 +25,7 @@ export const reducer = (state: InitialState, { type, payload }: Action) => {
         ...state,
         title: 'Editing Task',
         task: payload as Task,
-        gql: UPDATE_TASK,
+        mutation: UPDATE_TASK,
       };
 
     case 'reset':

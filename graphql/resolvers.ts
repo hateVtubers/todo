@@ -4,7 +4,6 @@ import uniqid from 'uniqid';
 export type Task = {
   title: string;
   description: string;
-  done: boolean;
   id?: string;
 };
 
@@ -37,13 +36,6 @@ export const resolvers = {
       } else {
         return [];
       }
-    },
-
-    getTasksComplete: async (_: any, { uid }: { uid: string }) => {
-      const snapshot = await db.collection(uid).get();
-      const docs = snapshot.docs.map((doc) => doc.data());
-
-      return docs.filter((doc) => doc.done);
     },
   },
 

@@ -4,14 +4,12 @@ export const typeDefs = gql`
   type Task {
     title: String!
     description: String!
-    done: Boolean!
     id: ID!
   }
 
   input TaskInput {
     title: String
     description: String
-    done: Boolean
     id: ID
   }
 
@@ -24,6 +22,5 @@ export const typeDefs = gql`
   type Query {
     getTasks(uid: ID!): [Task]!
     getTasksRemoves(uid: ID!): [Task]!
-    getTasksComplete(uid: ID!): [Task]!
   }
 `;
