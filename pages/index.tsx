@@ -20,7 +20,7 @@ const Home: NextPage<Props> = ({ userSSR }) => {
         <Form disabled={!user} uid={user?.uid} />
       </div>
       <div>
-        <Menu uid={user?.uid as string} />
+        <Menu uid={user?.uid} />
       </div>
     </main>
   );

@@ -1,9 +1,10 @@
-import { useContext } from 'react';
-import { FormContext } from 'hooks/FormContext';
-import { useMutation } from '@apollo/client';
-import { SubmitHandler } from 'react-hook-form';
-import { Inputs } from 'components/Form';
-import { GET_TASKS, GET_TASK_REMOVE } from 'graphql/query';
+import { useContext } from "react";
+import { FormContext } from "hooks/FormContext";
+import { useMutation } from "@apollo/client";
+import { SubmitHandler } from "react-hook-form";
+import { Inputs } from "components/Form";
+import { GET_TASKS, GET_TASK_REMOVE } from "graphql/query";
+import toast from "react-hot-toast";
 
 export const useCrud = (uid?: string) => {
   const {
@@ -29,23 +30,37 @@ export const useCrud = (uid?: string) => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // @ts-ignore
-    if (Object.hasOwn(res, 'task')) {
+    if (Object.hasOwn(res, "task")) {
       // update task
-      getMutation({
-        variables: {
-          task: data,
-          id: res.task?.id,
-          uid: uid,
-        },
-      });
+      toast.promise(
+        getMutation({
+          variables: {
+            task: data,
+            id: res.task?.id,
+            uid: uid,
+          },
+        }),
+        {
+          loading: "Updating task...",
+          success: "Task updated successfully",
+          error: "Error updating task",
+        }
+      );
     } else {
       // create task
-      getMutation({
-        variables: {
-          task: data,
-          uid: uid,
-        },
-      });
+      toast.promise(
+        getMutation({
+          variables: {
+            task: data,
+            uid: uid,
+          },
+        }),
+        {
+          loading: "Creating task...",
+          success: "Task created successfully",
+          error: "Error creating task",
+        }
+      );
     }
   };
 
