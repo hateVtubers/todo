@@ -13,7 +13,7 @@ export const Menu = ({ uid }: { uid: string | undefined }) => {
     <>
       <div className="bg-downriver-400 rounded">
         <nav>
-          <ul className="grid w-[369px] grid-cols-2 place-content-center">
+          <ul className="grid md:w-[369px] w-80 grid-cols-2 place-content-center">
             {links.map(([title, onClick]) => (
               <li key={title}>
                 <button

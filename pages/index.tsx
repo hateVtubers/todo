@@ -14,8 +14,8 @@ const Home: NextPage<Props> = ({ userSSR }) => {
   const { user } = useAuth({ auth, userSSR });
 
   return (
-    <main className='grid min-h-screen grid-cols-2 place-items-center'>
-      <div className='flex flex-col items-center gap-2.5'>
+    <main className='grid md:min-h-screen md:grid-cols-2 md:grid-rows-none grid-rows-2 place-items-center'>
+      <div className='flex flex-col items-center justify-center gap-2.5 min-h-screen'>
         <Card user={user} />
         <Form disabled={!user} uid={user?.uid} />
       </div>
